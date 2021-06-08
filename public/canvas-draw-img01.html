@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        #mycanvas {
+            border: 1px dotted green;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="mycanvas" width="300" height="200"></canvas>
+<br>
+<button onclick="draw()">draw image</button>
+<br>
+<img id="myimg" src="images/bunny-poster.png" alt="">
+
+
+<script>
+    const myc = document.querySelector('#mycanvas');
+    const ctx = myc.getContext('2d');
+
+    function draw(){
+        // ctx.drawImage(myimg, 0, 0);
+        ctx.drawImage(myimg, 0, 0, myimg.width/2, myimg.height/2);
+        console.log(myc.toDataURL());
+    }
+
+
+</script>
+</body>
+</html>
