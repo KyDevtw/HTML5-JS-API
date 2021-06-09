@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		.box {
+			position: relative;
+			width: 150px;
+			height: 100px;
+			background-color: #5e9ec9;
+			border: 1px solid black;
+		}
+
+		#b2 {
+			background-color: #aaa;
+		}
+	</style>
+</head>
+
+<body>
+
+	<!-- draggable 是 true 才可以拖拉，拖拉時不是直接移動本體是拖拉一個 clone -->
+
+	<div id="b1" class="box" draggable="true"></div>
+	<div id="b2" class="box" ></div>
+
+
+	<script>
+		const b1 = document.querySelector('#b1');
+		const b2 = document.querySelector('#b2');
+
+		const handler = event => {
+			console.log(event.type, event.target);
+		}
+
+		// draggable 是 true 才可以觸發下面的三個事件
+		b1.addEventListener('dragstart', handler);
+		// b1.addEventListener('drag', handler);
+		b1.addEventListener('dragend', handler);
+
+		b2.addEventListener('dragenter', handler);
+		b2.addEventListener('dragleave', handler);
+		b2.addEventListener('dragover', event => {
+			// 一定要在dragover 呼叫preventDefault(), drop 事件才會發生
+			event.preventDefault();
+		});
+		b2.addEventListener('drop', handler);
+
+	</script>
+</body>
+
+</html>

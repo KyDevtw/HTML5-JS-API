@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .ball {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            background-color: #2c47ff;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 60px;
+            color: white;
+        }
+
+        .rect {
+            position: absolute;
+            width: 300px;
+            height: 200px;
+            background-color: #82bce3;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="rect">
+        <div id="b1" class="ball" draggable="true">1</div>
+        <div id="b2" class="ball" draggable="true">2</div>
+        <div id="b3" class="ball" draggable="true">3</div>
+    </div>
+
+    <div class="rect" style="background-color: #df9191;left: 400px; top:100px"></div>
+    <script src="javascripts/jquery-3.4.1.js"></script>
+    <script>
+
+        const balls = $('.ball');
+        const rects = $('.rect');
+
+        balls.on('dragstart', function (event) {
+            // dataTransfer 只能存放一個字串
+            // 設定轉移的資料
+            console.log(event.target.id);
+            event.originalEvent.dataTransfer.setData('text', event.target.id);
+        });
+
+        // dragover 要 .preventDefault() 才能監聽 drop
+        rects.on('dragover', event => event.preventDefault());
+            
+
+        rects.on('drop', function (event) {
+            // 取得轉移的資料
+            // append 會抽出選定物件，加進選擇物件（如選定物件不在 DOM 內會只有新增效果）
+            const objId = event.originalEvent.dataTransfer.getData('text');
+            console.log('drop:', event.target);
+            console.log('data:', objId);
+            
+            $(event.target).append($('#' + objId));
+        });
+    
+
+
+    </script>
+</body>
+
+</html>
