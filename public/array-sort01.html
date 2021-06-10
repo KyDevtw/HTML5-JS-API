@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2 id="info"></h2>
+
+
+    <script>
+        const ar = [2, 56, 19, 37, 76, 34, 21];
+        const ar2 = [
+            {name: 'bill', age:25},
+            {name: 'mary', age:22},
+            {name: 'david', age:23},
+        ];
+        // ar.sort();
+        ar.sort((a, b)=>{
+            // console.log(a, b, a-b);
+            return a-b;  // 數值由小到大
+        });
+        console.log(ar); // console會直接印出當前狀態 
+        console.log(JSON.stringify(ar)); // 透過 JSON 轉成字串最準確
+
+        ar.sort((a, b)=> b-a);  // 數值由大到小
+        console.log(ar);
+        console.log(JSON.stringify(ar));
+
+        info.innerText = JSON.stringify(ar);
+    </script>
+</body>
+
+</html>

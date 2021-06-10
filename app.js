@@ -25,6 +25,24 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', serveIndex('public', {'icons': true})); // 顯示資料夾畫面
 app.use('/users', usersRouter);
 
+app.get('/try-sse', (req, res)=>{
+  let id = 30;
+  res.writeHead(200, {
+    'Content-Type': 'text/event-stream; charset=utf-8',
+    'Cache-Control': 'no-cache',
+    'Connection': 'keep-alive',
+  });
+
+  setInterval(function(){
+    let now = new Date;
+    // 不能使用 res.send send包含write end兩個動作 
+    res.write(`id: ${id}\n`);
+    res.write(`data: ${now.toLocaleString()}\n\n`);
+    id ++;
+  }, 2000) // 每兩秒執行一次
+
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

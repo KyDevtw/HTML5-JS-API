@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2 id="info"></h2>
+
+
+    <script>
+        
+        const ar2 = [
+            { name: 'bill', age: 25 },
+            { name: 'mary', age: 22 },
+            { name: 'david', age: 23 },
+        ];
+        // ar.sort();
+        ar2.sort((a, b) => {
+            // console.log(a, b, a-b);
+            // sort 是將兩者相減，當數值小於 0 時對調
+            // 使用比較運算子回傳布林值
+            return a.name  > b.name ? 1 : -1;  // 英文字母由小到大
+        });
+
+        console.log(ar2); // console會直接印出當前狀態 
+        info.innerText = JSON.stringify(ar2);
+
+       
+    </script>
+</body>
+
+</html>
