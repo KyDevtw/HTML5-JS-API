@@ -45,6 +45,7 @@
 						return;
 					}
 					socket = new WebSocket('ws://echo.websocket.org'); // 連線到別人的 websocket
+					// socket = new WebSocket('ws://localhost:3000'); // 有自己做 ws-echo.js 可以用
 					socket.addEventListener('open', myOpen);
 					socket.addEventListener('message', myMessage);
 					socket.addEventListener('close', myClose);

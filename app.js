@@ -10,6 +10,7 @@ var usersRouter = require('./routes/users');
 var app = express();
 
 const serveIndex = require('serve-index');
+const axios = require('axios'); 
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -42,6 +43,17 @@ app.get('/try-sse', (req, res)=>{
   }, 2000) // 每兩秒執行一次
 
 });
+
+
+//! 向外部伺服器取得資料
+app.get('/yahoo', (req, res)=>{
+  axios.get('https://tw.yahoo.com/')
+      .then(response=>{
+        res.send(response.data);
+      });
+});
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
