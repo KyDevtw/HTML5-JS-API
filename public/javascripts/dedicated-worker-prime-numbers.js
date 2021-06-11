@@ -24,7 +24,7 @@ const getPrimeNumbers = (num=2e7)=>{
 	}
 };
 
-// this, self: DedicatedWorkerGlobalScope
+// ? this, self: DedicatedWorkerGlobalScope
 self.onmessage = event=>{
 	if(event.data==='start'){
 		postMessage(getPrimeNumbers());
